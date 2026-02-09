@@ -44,7 +44,7 @@ class Solution {
     
 }
 
-remove duplicates and total number of unique elements in list
+remove duplicates and total number of unique elements in list using two pointers
 
 i.
 
@@ -77,4 +77,24 @@ for (int i = 0; i < nums.length - 1; i++) {
 nums[index++] = nums[nums.length - 1];
         
 
+}
+
+
+Remove elements using two pointers
+
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        
+        int index = 0; // position to place valid elements
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != val) {
+                nums[index] = nums[i];
+                index++;
+            }
+        }
+
+        return index;
+
+    }
 }
