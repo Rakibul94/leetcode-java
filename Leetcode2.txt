@@ -1,4 +1,4 @@
-Singly linked list merging
+Singly linked list merging two sorted linked lists:
 
 /**
  * Definition for singly-linked list.
@@ -10,38 +10,38 @@ Singly linked list merging
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
-    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-         // Head node to start the merged list
-        ListNode head = new ListNode(0);
-        ListNode current = head;
 
-        // While both lists have nodes
-        while (list1 != null && list2 != null) {
+class Solution{
+    public ListNode mergeTwoSortedLists(ListNode list1,ListNode list2){
 
-            if (list1.val <= list2.val) {
-                current.next = list1;   // attach l1 node
-                list1 = list1.next;        // move l1 forward
-            } else {
-                current.next = list2;   // attach l2 node
-                list2 = list2.next;        // move l2 forward
+        ListNode dummy = new ListNode(0); 
+
+        ListNode current = dummy; //For traversing ListNode
+
+        while(list1 != null && list2 != null){
+            if(list1.val <= list2.val){
+                current.next = list1; //Replacing each node overwrites existing nodes
+                list1 = list1.next;
             }
+            else{
+                current.next = list2 //Replacing each node overwrites existing nodes
+                list2 = list2.next;
 
-            current = current.next;  // move merged list forward
+            }
+            current = current.next;
         }
 
-        // Attach the remaining list (if any)
-        if (list1 != null) {
+        if(list1 ! = null){ //Attaching remaining nodes ListNode
             current.next = list1;
-        } else {
+        }
+        else{
             current.next = list2;
         }
 
-        // The real head is next to dummy
-        return head.next;
-    }
+        return dummy.next; //We are skipping first node which is zero
+
         
-    
+    }
 }
 
 remove duplicates and total number of unique elements in list using two pointers
