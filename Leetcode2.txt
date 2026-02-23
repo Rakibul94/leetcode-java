@@ -1,3 +1,6 @@
+For Linked Lists:
+
+
 Singly linked list merging two sorted linked lists:
 
 /**
@@ -44,40 +47,43 @@ class Solution{
     }
 }
 
-remove duplicates and total number of unique elements in list using two pointers
+Remove Duplicates from singly linked lists:
 
-i.
-
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 class Solution {
-    public int removeDuplicates(int[] nums) {
-        if (nums.length == 0) {
-            return 0;
+    public ListNode deleteDuplicates(ListNode head) {
+
+        if(head == null){
+            return head;
         }
 
-        int index = 1; // position to place next unique number
+        ListNode current = head;
 
-        for (int i = 1; i < nums.length; i++) {
+        while(current.next != null){
 
-            if (nums[i] != nums[i - 1]) {
-                nums[index] = nums[i];
-                index++;
+            if(current.val == current.next.val){
+                current.next = current.next.next;
+            }
+            else{
+                current = current.next;
             }
         }
 
-        return index;
-    }
-
-Another version ii.
-
-for (int i = 0; i < nums.length - 1; i++) {
-    if (nums[i] != nums[i + 1]) {
-        nums[index++] = nums[i];
-    }
-}
-nums[index++] = nums[nums.length - 1];
+        return head;
         
-
+    }
 }
+
+
 
 
 Remove elements using two pointers
