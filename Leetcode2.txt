@@ -12,7 +12,7 @@ Singly linked list merging two sorted linked lists:
  */
 
 class Solution{
-    public ListNode mergeTwoSortedLists(ListNode list1,ListNode list2){
+    public ListNode mergeTwoLists(ListNode list1,ListNode list2){
 
         ListNode dummy = new ListNode(0); 
 
@@ -20,18 +20,18 @@ class Solution{
 
         while(list1 != null && list2 != null){
             if(list1.val <= list2.val){
-                current.next = list1; //Replacing each node overwrites existing nodes
+                current.next = list1; //We are linking existing nodes into a new order
                 list1 = list1.next;
             }
             else{
-                current.next = list2 //Replacing each node overwrites existing nodes
+                current.next = list2; //We are linking existing nodes into a new order
                 list2 = list2.next;
 
             }
             current = current.next;
         }
 
-        if(list1 ! = null){ //Attaching remaining nodes ListNode
+        if(list1 != null){ //Attaching remaining nodes ListNode
             current.next = list1;
         }
         else{
