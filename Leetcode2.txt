@@ -169,30 +169,41 @@ public class Solution {
     }
 }
 
+Reverse Linked List:
 
 
-
-Length of Last Word:
-
-
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
 class Solution {
-    public int lengthOfLastWord(String s) {
+    public ListNode reverseList(ListNode head) {
 
-        int count = 0;
-
-        for(int i = s.length() - 1;i >= 0; i--){
-
-            if(s.charAt(i) != ' '){
-                count++;
-            }
-            else if(s.charAt(i) == ' ' && count > 0){
-                break;
-            }
+        if(head == null){
+            return head;
         }
-        return count;
 
-    }
+        ListNode current = head;
+        ListNode prev = null;
+
+        while(current != null){
+            ListNode temp = current.next; //Reversing connection will cause it lose actual
+            // current.next
+            current.next = prev; //We are reversing linked list connection
+            prev = current; 
+            current = temp;
+            
+        }
+
+        return prev;
     
+    }
 }
 
 
