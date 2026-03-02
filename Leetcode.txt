@@ -47,11 +47,15 @@ class Solution {
 
                     return out;
                 }
-            
-            out += strs.charAt(i);
+        
 
             }
+
+             out += strs[0].charAt(i);
         }
+
+        return out;
     }
 }
+
 
