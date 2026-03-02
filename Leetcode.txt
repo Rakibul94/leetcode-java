@@ -1,3 +1,7 @@
+For Arrays:
+
+
+
 Two Sum:
 
 
@@ -50,3 +54,4 @@ class Solution {
         }
     }
 }
+
