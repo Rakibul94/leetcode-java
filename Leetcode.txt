@@ -87,3 +87,41 @@ class Solution {
         return res;
     }
 }
+
+
+Merge Sorted Array:
+
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+
+        if(m == 0 && n == 0){
+            System.out.println("No element in arrays");
+        } else{
+
+            int[] out = new int[m + n];
+            int j = 0;
+            for(int i : nums1){
+                if(i != 0){
+                    out[j] = i;
+                    j++;
+                }
+            }
+
+            for(int k : nums2){
+                out[j] = k;
+                j++;
+            }
+
+            Arrays.sort(out);
+
+            for(int a = 0; a < m + n; a++){
+                nums1[a] = out[a];
+            }
+
+
+        }
+
+        
+    }
+}
+
