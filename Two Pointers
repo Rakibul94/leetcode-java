@@ -1,1 +1,99 @@
+Two Sum:
 
+Brute Force:
+
+public class TwoSumBruteForce {
+
+    public static void main(String[] args) {
+
+        int[] arr = {1,2,3,4,6};
+        int target = 6;
+
+        for(int i=0;i<arr.length;i++){
+            for(int j=i+1;j<arr.length;j++){
+                if(arr[i] + arr[j] == target){
+                    System.out.println(arr[i] + " " + arr[j]);
+                }
+            }
+        }
+    }
+}
+
+Two Pointers:
+
+public class TwoSumTwoPointer {
+
+    public static void main(String[] args) {
+
+        int[] arr = {1,2,3,4,6};
+        int target = 6;
+
+        int left = 0;
+        int right = arr.length - 1;
+
+        while(left < right){
+
+            int sum = arr[left] + arr[right];
+
+            if(sum == target){
+                System.out.println(arr[left] + " " + arr[right]);
+                break;
+            }
+            else if(sum < target){
+                left++;
+            }
+            else{
+                right--;
+            }
+        }
+    }
+}
+
+
+
+Valid Palindrome:
+
+Brute Force:
+
+public class PalindromeBrute {
+
+    public static void main(String[] args) {
+
+        String s = "racecar";
+
+        String reversed = "";
+
+        for(int i=s.length()-1;i>=0;i--){
+            reversed += s.charAt(i);
+        }
+
+        System.out.println(s.equals(reversed));
+    }
+}
+
+
+Two Pointers:
+
+public class PalindromeTwoPointer {
+
+    public static void main(String[] args) {
+
+        String s = "racecar";
+
+        int left = 0;
+        int right = s.length() - 1;
+
+        while(left < right){
+
+            if(s.charAt(left) != s.charAt(right)){
+                System.out.println(false);
+                return;
+            }
+
+            left++;
+            right--;
+        }
+
+        System.out.println(true);
+    }
+}
