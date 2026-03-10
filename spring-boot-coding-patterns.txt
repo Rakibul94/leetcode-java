@@ -1,0 +1,75 @@
+Spring Boot coding patterns:
+
+
+
+@Override
+public List<CommunityShortInfo> getCommunityDetailsByWorkspace(Workspace workspace) {
+
+    List<Community> communities =
+            communityRepository.findByWorkspaceId(workspace.getId());
+
+    List<CommunityShortInfo> communityList = new ArrayList<>();
+
+    for (Community community : communities) {
+
+        List<Campaign> campaigns =
+                campaignRepository.findByCommunityId(community.getId());
+
+        List<CampaignDataInfo> campaignList = new ArrayList<>();
+
+        for (Campaign campaign : campaigns) {
+
+            CampaignDataInfo campaignInfo = new CampaignDataInfo(
+                    campaign.getCommunityId(),
+                    campaign.getCampaignGroupId(),
+                    campaign.isDisabled(),
+                    campaign.getName()
+            );
+
+            campaignList.add(campaignInfo);
+        }
+
+        CommunityShortInfo communityInfo =
+                new CommunityShortInfo(community.getTitle(), campaignList);
+
+        communityList.add(communityInfo);
+    }
+
+    return communityList;
+}
+
+Using builder function and stream api:
+
+@Override
+public List<CommunityShortInfo> getCommunityDetailsByWorkspace(Workspace workspace) {
+
+    List<Community> communities = communityRepository.findByWorkspaceId(workspace.getId());
+
+    List<CommunityShortInfo> communityList = new ArrayList<>();
+
+    for (Community community : communities) {
+
+        List<Campaign> campaigns = campaignRepository.findAllByCommunityId(community.getId());
+
+        // Build campaign DTOs
+        List<CampaignDataInfo> campaignList = campaigns.stream()
+                .map(campaign -> CampaignDataInfo.builder()
+                        .communityId(campaign.getCommunityId())
+                        .campaignGroupId(campaign.getCampaignGroupId())
+                        .disabled(campaign.isDisabled())
+                        .name(campaign.getName())
+                        .build())
+                .collect(Collectors.toList());
+
+        // Build community DTO with campaign list
+        CommunityShortInfo communityInfo = CommunityShortInfo.builder()
+                .name(community.getName())
+                .campaignDataList(campaignList)
+                .build();
+
+        communityList.add(communityInfo);
+    }
+
+    return communityList;
+}
+
