@@ -97,3 +97,55 @@ public class PalindromeTwoPointer {
         System.out.println(true);
     }
 }
+
+Remove Duplicates From Sorted Array:
+
+Brute Force:
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+
+    if(nums.length == 0){
+       return 0;
+    }
+
+    int pointer = 1;
+
+    for(int i = 1; i < nums.length; i++){
+
+       if(nums[i] != nums[i-1]){
+            nums[pointer] = nums[i];
+            pointer++;
+        }
+
+    }
+      
+    return pointer;
+        
+    }
+}
+
+Two Pointers:
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+
+    if(nums.length == 0){
+       return 0;
+    }
+
+    int pointer = 1;
+
+    for(int i = 1; i < nums.length; i++){
+
+       if(nums[i] != nums[i-1]){
+            nums[pointer] = nums[i];
+            pointer++;
+        }
+
+    }
+      
+    return pointer;
+        
+    }
+}
