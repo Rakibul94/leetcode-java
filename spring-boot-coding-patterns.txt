@@ -73,3 +73,31 @@ public List<CommunityShortInfo> getCommunityDetailsByWorkspace(Workspace workspa
     return communityList;
 }
 
+    @Override
+    public List<CommunityShortData> getCommunitiesByWorkspace(Workspace workspace) {
+
+//        List<CommunityShort> communityShorts = communityRepository.findCommunityShortsByWorkspaceId(workspace.getId())
+//        List<CommunityShortData> communities = new ArrayList<>();
+//
+//        for (CommunityShort communityShort : communityShorts) {
+//
+//            List<CampaignShortData> campaigns =
+//                    campaignRepository.findAllCampignShortDataByCommunityId(communityShort.getCommunityId());
+//
+//            CommunityShortData communityShortData = CommunityShortData.builder()
+//                    .name(communityShort.getName())
+//                    .key(communityShort.getKey())
+//                    .campaigns(campaigns).build();
+//
+//            communities.add(communityShortData);
+//        }
+
+        return communityRepository.findCommunityShortsByWorkspaceId(workspace.getId()).stream()
+                .map(communityShort -> CommunityShortData.builder()
+                        .name(communityShort.getName())
+                        .key(communityShort.getKey())
+                        .campaigns(campaignRepository.findAllCampignShortDataByCommunityId(communityShort.getCommunityId()))
+                        .build())
+                .toList();
+
+    }
