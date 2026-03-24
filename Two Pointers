@@ -276,5 +276,54 @@ Two Pointers:
 
 
 
+Valid Palindrome 2:
+
+Brute Force:
+
+public boolean isPalindrome(String s) {
+    StringBuilder cleaned = new StringBuilder();
+
+    for (char c : s.toCharArray()) {
+        if (Character.isLetterOrDigit(c)) {
+            cleaned.append(Character.toLowerCase(c));
+        }
+    }
+
+    String original = cleaned.toString();
+    String reversed = cleaned.reverse().toString();
+
+    return original.equals(reversed);
+}
+
+Two Pointers:
+
+class Solution {
+    public boolean isPalindrome(String s) {
+        int left = 0;
+        int right = s.length() - 1;
+
+        while(left < right){
+
+            char l = s.charAt(left);
+            char r = s.charAt(right);
+
+            if(!Character.isLetterOrDigit(l)){
+                left++;
+            } else if(!Character.isLetterOrDigit(r)){
+                right--;
+            } else{
+                if(Character.toLowerCase(l) != Character.toLowerCase(r)){
+                    return false;
+                }
+                left++;
+                right--;
+            }
+
+
+        } 
+        return true;       
+    }
+}
+
 
 
