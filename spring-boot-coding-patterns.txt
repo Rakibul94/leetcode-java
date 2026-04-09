@@ -101,3 +101,65 @@ public List<CommunityShortInfo> getCommunityDetailsByWorkspace(Workspace workspa
                 .toList();
 
     }
+
+
+With Loop:
+
+@Override
+public List<CampaignShortData> getCampaigns(
+        Workspace workspaceData,
+        Community communityData,
+        Member member,
+        CampaignQueryParameters parameters
+) {
+    List<Long> campaignIds = findCampaignIds(
+            communityData,
+            mapCampaignQueryParameters(workspaceData, communityData, member, parameters)
+    );
+
+    List<CampaignShortData> campaigns = new ArrayList<>();
+
+    if (campaignIds != null) {
+        for (Long campaignId : campaignIds) {
+            Optional<CampaignData> optionalCampaign = findCampaignById(communityData, campaignId);
+
+            if (optionalCampaign.isPresent()) {
+                CampaignData campaignData = optionalCampaign.get();
+
+                CampaignShortData shortData = CampaignShortData.builder()
+                        .communityId(campaignData.getCommunityId())
+                        .campaignGroupId(campaignData.getCampaignGroupId())
+                        .disabled(campaignData.isDisabled())
+                        .name(campaignData.getName())
+                        .build();
+
+                campaigns.add(shortData);
+            }
+        }
+    }
+
+    return campaigns;
+}
+
+With Stream Api:
+
+ @Override
+    public List<CampaignShortData> getCampaigns(Workspace workspaceData, Community communityData, Member member, CampaignQueryParameters parameters) {
+        List<Long> CampaignIds = findCampaignIds(communityData, mapCampaignQueryParameters(workspaceData, communityData, member, parameters));
+        List<CampaignShortData> campaigns = new ArrayList<>();
+        if (CampaignIds != null) {
+            List<CampaignShortData> filteredCampaigns = CampaignIds.stream()
+                    .map(campaignId -> findCampaignById(communityData, campaignId).orElse(null))
+                    .filter(Objects::nonNull)
+                    .map(campaignData ->  CampaignShortData.builder()
+                            .communityId(campaignData.getCommunityId())
+                            .campaignGroupId(campaignData.getCampaignGroupId())
+                            .disabled(campaignData.isDisabled())
+                            .name(campaignData.getName())
+                            .build()
+                    )
+                    .toList();
+            campaigns.addAll(filteredCampaigns);
+        }
+        return campaigns;
+    }
