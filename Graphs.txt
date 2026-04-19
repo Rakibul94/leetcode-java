@@ -1,0 +1,78 @@
+A graph is a collection of:
+
+Vertices (nodes) → entities (users, cities, etc.)
+Edges → connections between them
+
+Think:
+
+Facebook → users = nodes, friendships = edges
+Roads → cities = nodes, roads = edges
+
+1. Undirected Graphs
+
+Edges go both ways
+
+2. Directed Graphs
+
+Edges have directions
+
+3. Weighted Graphs
+
+Edges have cost/weight.
+
+4. Unweighted Graphs
+
+All edges are equal.
+
+Cyclic graphs where loop exists.
+Acyclic graphs loop do not exist.
+
+
+Adjacency List:
+
+For undirected graphs:
+
+import java.util.*;
+
+class Graph {
+    int V;
+    List<List<Integer>> adj;
+
+    Graph(int V) {
+        this.V = V;
+        adj = new ArrayList<>();
+
+        for (int i = 0; i < V; i++) {
+            adj.add(new ArrayList<>());
+        }
+    }
+
+    void addEdge(int u, int v) {
+        adj.get(u).add(v);
+        adj.get(v).add(u);  //Both nodes reach each other.
+    }
+
+
+For directed graphs:
+
+import java.util.*;
+
+class Graph {
+    int V;
+    List<List<Integer>> adj;
+
+    Graph(int V) {
+        this.V = V;
+        adj = new ArrayList<>();
+
+        for (int i = 0; i < V; i++) {
+            adj.add(new ArrayList<>());
+        }
+    }
+
+    void addEdge(int u, int v) {
+        adj.get(u).add(v);  //Only one node reach another.
+    }
+
+
+}
