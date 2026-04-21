@@ -76,3 +76,21 @@ class Graph {
 
 
 }
+
+Adjacency Matrix:
+
+For unidirected:
+
+int[][] matrix = new int[V][V];
+
+matrix[u][v] = 1;
+matrix[v][u] = 1;
+
+For directed:
+
+int[][] matrix = new int[V][V];
+
+matrix[u][v] = 1;
+
+
+
