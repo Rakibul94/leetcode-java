@@ -122,3 +122,16 @@ void bfs(int start) {
     }
 }
 
+DFS (Depth First Search):
+
+void dfs(int node, boolean[] visited) {
+    visited[node] = true;
+    System.out.print(node + " ");
+
+    for (int neighbor : adj.get(node)) {
+        if (!visited[neighbor]) {
+            dfs(neighbor, visited);
+        }
+    }
+}
+
