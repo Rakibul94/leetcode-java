@@ -93,4 +93,32 @@ int[][] matrix = new int[V][V];
 matrix[u][v] = 1;
 
 
+Graph Traversal:
+
+BFS (Breadth First Search):
+
+Uses Queue
+Level by level traversal
+Shortest path (unweighted)
+
+
+void bfs(int start) {
+    boolean[] visited = new boolean[V];
+    Queue<Integer> queue = new LinkedList<>();
+
+    visited[start] = true;
+    queue.add(start);
+
+    while (!queue.isEmpty()) {
+        int node = queue.poll();
+        System.out.print(node + " ");
+
+        for (int neighbor : adj.get(node)) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = true;
+                queue.add(neighbor);
+            }
+        }
+    }
+}
 
