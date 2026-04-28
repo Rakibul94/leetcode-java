@@ -135,3 +135,22 @@ void dfs(int node, boolean[] visited) {
     }
 }
 
+
+For BFS:
+
+Time Complexity: O(V + E)
+V = vertices
+E = edges
+Space Complexity: O(V)
+For visited array + queue
+
+Common Mistakes
+
+❌ Marking visited after removing from queue
+→ causes duplicates
+
+❌ Not using visited array
+→ infinite loop in cyclic graph
+
+❌ Using stack instead of queue
+→ becomes DFS, not BFS
