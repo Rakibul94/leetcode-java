@@ -154,3 +154,16 @@ Common Mistakes
 
 ❌ Using stack instead of queue
 → becomes DFS, not BFS
+
+
+
+For DFS:
+
+Backtracking
+
+DFS works like:
+
+Go deep
+Hit dead end
+Come back (backtrack)
+Try another path
